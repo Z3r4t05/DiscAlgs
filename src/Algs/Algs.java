@@ -101,7 +101,7 @@ public class Algs {
             }
         }
         System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
-        System.out.println("Total seek time = ");
+        System.out.println("Total seek time = " + Inputter.util.thousandSeparator(seekCount * seekRate));
     }
 
     public int getMinCyl() {
