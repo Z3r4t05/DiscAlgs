@@ -1,9 +1,7 @@
-SSTF ALGORITHM
+FCFS ALGORITHM
 Requests sequence: 
-2 6 34 3 6 
-Head position: 1
+1 3 4 5 6 7 7 8 9 10 
+Head position: 50
 
-Total head movement = 33
-Total seek time = 33*0 = 0ms
-Seek sequence: 
-[1, 2, 3, 6, 6, 34]
+Total head movement = 58
+Total seek time = 58*2 = 116ms

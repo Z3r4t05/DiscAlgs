@@ -81,7 +81,7 @@ public abstract class Algs {
                 bf.readLine(); //consume the first line
                 int count = 0;
                 String line; //line to be read
-                while ((line = bf.readLine()) != null) {
+                if ((line = bf.readLine()) != null) {
                     line = line.trim();
                     if (line.length() > 0) {
                         StringTokenizer stk = new StringTokenizer(line, " ");
@@ -103,7 +103,7 @@ public abstract class Algs {
                 }         
             }
         } catch (IOException | NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return true;
     }
