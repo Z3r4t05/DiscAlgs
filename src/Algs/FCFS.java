@@ -5,6 +5,12 @@
  */
 package Algs;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author ADMIN
@@ -17,6 +23,7 @@ public class FCFS extends Algs {
     public FCFS(int seekRate, int totalCylinders, int headPos) {
         super(seekRate, totalCylinders, headPos);
     }
+
     /**
      * Run FCFS algorithm
      */
@@ -27,9 +34,10 @@ public class FCFS extends Algs {
             return;
         }
         int head = Inputter.util.getintMinMax("Enter current position of the head: ", super.getMinCyl(), super.getMaxCyl());
+        this.setHeadPos(head);
         int seekCount = 0;
         int distance, curTrack;
-        char c = Inputter.util.getChar("Do you want to see the calculation (y/n)? ", "[YyNn]");
+        char c = Inputter.util.getChar("Do you want to see the calculation ? (y/n): ", "[YyNn]");
         if (c == 'Y' || c == 'y') {
             for (int i = 0; i < super.getRequests().size(); i++) {
                 System.out.print("(");
@@ -61,23 +69,48 @@ public class FCFS extends Algs {
         }
         System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
         System.out.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
+        c = Inputter.util.getChar("Do you want save the results ? (y/n): ", "[YyNn]");
+        if (c == 'Y' || c == 'y') {
+            writeResults("src\\FCFS.txt", seekCount, this.getHeadPos());
+        } else {
+            System.out.println("Finished");
+        }
         //To change body of generated methods, choose Tools | Templates.
 
     }
 
     @Override
-    public void writeResults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean writeResults(String filename, int seekCount, int head) {
+        try {
+            try (FileWriter fw = new FileWriter(filename); PrintWriter pw = new PrintWriter(fw)) {
+                Iterator it = this.getRequests().iterator();
+                pw.println("FCFS ALGORITHM");
+                pw.println("Requests sequence: ");
+                while(it.hasNext()) {
+                    pw.print(it.next() + " ");
+                }
+                pw.println("\nHead position: " + head);
+                pw.println("\nTotal head movement = " + Inputter.util.thousandSeparator(seekCount));
+                pw.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        System.out.println("Save successfully");
+        return true;
     }
     
     public static void main(String[] args) {
         Algs n = new FCFS(2, 200, 50);
         String filename = "src\\requests.txt";
-        if (n.loadRequests(filename)) {
-            System.out.println("load success");
-        } else 
-            System.out.println("error");
+        n.loadRequests(filename);
         n.Run();
     }
-    
+
+    @Override
+    public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

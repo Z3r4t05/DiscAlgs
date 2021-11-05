@@ -37,6 +37,7 @@ public abstract class Algs {
     }
 
     public void inputRequests() {
+        this.setTotalCylinders(Inputter.util.getintGreater("Enter total cylinders (min 1): ", 1));
         int totalReq = Inputter.util.getintGreater("Enter total number of request: ", 1);
         for (int i = 0; i < totalReq; i++) {
             requests.add(Inputter.util.getintMinMax("Request " + (i + 1) + " (" + minCyl + "-" + maxCyl + "): ", minCyl, maxCyl));
@@ -45,6 +46,7 @@ public abstract class Algs {
 
     public void randomRequests() {
         int totalReq = Inputter.util.getintGreater("Enter total number of request: ", 1);
+        this.setTotalCylinders(Inputter.util.getintGreater("Enter total cylinders (min 1): ", 1));
         System.out.println("Generating " + totalReq + " request(s) with value from " + this.minCyl + " to " + this.maxCyl);
         try {
             TimeUnit.SECONDS.sleep(3);
@@ -64,8 +66,7 @@ public abstract class Algs {
     }
 
     /**
-     * Read requests sequence from text file
-     *
+     * Read information from text file
      * @param filename
      * @return true if file read successfully
      * @since 05-11-2021
@@ -86,18 +87,37 @@ public abstract class Algs {
                         StringTokenizer stk = new StringTokenizer(line, " ");
                         while (stk.hasMoreTokens()) {
                             this.requests.add(Integer.parseInt(stk.nextToken().trim()));
+                            count++;
                         }
                     }
                 }
+                bf.readLine();
+                while ((line = bf.readLine()) != null) {
+                    line = line.trim();
+                    if (line.length() > 0) {
+                        StringTokenizer stk = new StringTokenizer(line, " ");
+                        if (stk.hasMoreTokens()) {
+                            this.setTotalCylinders(Integer.parseInt(stk.nextToken().trim()));
+                        }
+                    }
+                }         
             }
         } catch (IOException | NumberFormatException e) {
             System.out.println(e.getMessage());
         }
         return true;
     }
-
-    public abstract void writeResults();
-
+    /**
+     * Write result to filename
+     * @param filename
+     * @param seekCount
+     * @param head
+     * @return true if write successfully
+     * @since 05-11-21
+     */
+    public abstract boolean writeResults(String filename, int seekCount, int head);
+    public abstract boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek);
+    
     public abstract void Run();
 
     public int getMinCyl() {
