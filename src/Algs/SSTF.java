@@ -71,14 +71,13 @@ public class SSTF extends Algs {
         return index;
     }
 
-    @Override
     public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek) {
         try {
             try (FileWriter fw = new FileWriter(filename); PrintWriter pw = new PrintWriter(fw)) {
                 Iterator it = this.getRequests().iterator();
                 pw.println("SSTF ALGORITHM");
                 pw.println("Requests sequence: ");
-                while(it.hasNext()) {
+                while (it.hasNext()) {
                     pw.print(it.next() + " ");
                 }
                 pw.println("\nHead position: " + head);
@@ -97,7 +96,7 @@ public class SSTF extends Algs {
 
     @Override
     public void Run() {
-        
+
         if (super.getRequests().isEmpty()) {
             System.err.println("Empty requests!! Please input requests sequence");
             return;
@@ -128,15 +127,17 @@ public class SSTF extends Algs {
         char c = Inputter.util.getChar("Do you want to see the calculation ? (y/n): ", "[YyNn]");
         if (c == 'Y' || c == 'y') {
             for (int i = 0; i < seek.size() - 1; i++) {
-                
+
                 if (seek.get(i) > seek.get(i + 1)) {
                     System.out.print("(" + seek.get(i) + " - " + seek.get(i + 1));
-                } else 
+                } else {
                     System.out.print("(" + seek.get(i + 1) + " - " + seek.get(i));
+                }
                 if (i < seek.size() - 2) {
                     System.out.print(") + ");
-                } else 
+                } else {
                     System.out.println(") = " + seekCount);
+                }
                 if ((i != 0) && (((i + 1) % 6) == 0)) {
                     System.out.println("");
                 }
@@ -156,13 +157,8 @@ public class SSTF extends Algs {
 
     public static void main(String[] args) {
         Algs n = new SSTF();
-        
+
         n.inputRequests();
         n.Run();
-    }
-
-    @Override
-    public boolean writeResults(String filename, int seekCount, int head) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

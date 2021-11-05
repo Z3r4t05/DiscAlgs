@@ -15,12 +15,6 @@ import java.util.Vector;
  */
 public class SCAN extends Algs {
 
-    @Override
-    public boolean writeResults(String filename, int seekCount, int head) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -44,7 +38,6 @@ public class SCAN extends Algs {
         } else {
             right.add(this.getMaxCyl());
         }
-
         for (Integer request : this.getRequests()) {
             if (request < head) {
                 left.add(request);
@@ -53,7 +46,6 @@ public class SCAN extends Algs {
                 right.add(request);
             }
         }
-
         Collections.sort(left);
         Collections.sort(right);
         int run = 2;
@@ -77,12 +69,13 @@ public class SCAN extends Algs {
                 }
                 direction = 'l';
             }
-            System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
-            System.out.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
-            System.out.println("Seek sequence: ");
-            System.out.println(seek);
         }
+        System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
+        System.out.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
+        System.out.println("Seek sequence: ");
+        System.out.println(seek);
     }
+
     public static void main(String[] args) {
         Algs n = new SCAN();
         n.randomRequests();

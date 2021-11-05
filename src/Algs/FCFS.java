@@ -79,14 +79,13 @@ public class FCFS extends Algs {
 
     }
 
-    @Override
     public boolean writeResults(String filename, int seekCount, int head) {
         try {
             try (FileWriter fw = new FileWriter(filename); PrintWriter pw = new PrintWriter(fw)) {
                 Iterator it = this.getRequests().iterator();
                 pw.println("FCFS ALGORITHM");
                 pw.println("Requests sequence: ");
-                while(it.hasNext()) {
+                while (it.hasNext()) {
                     pw.print(it.next() + " ");
                 }
                 pw.println("\nHead position: " + head);
@@ -100,17 +99,11 @@ public class FCFS extends Algs {
         System.out.println("Save successfully");
         return true;
     }
-    
+
     public static void main(String[] args) {
         Algs n = new FCFS(2, 200, 50);
         String filename = "src\\requests.txt";
         n.loadRequests(filename);
         n.Run();
     }
-
-    @Override
-    public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

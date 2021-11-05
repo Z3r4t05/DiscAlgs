@@ -9,6 +9,11 @@ package Algs;
  *
  * @author ADMIN
  */
-public class CSCAN {
+public class CSCAN extends Algs{
+
+    @Override
+    public void Run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

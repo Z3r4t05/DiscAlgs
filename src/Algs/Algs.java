@@ -115,8 +115,7 @@ public abstract class Algs {
      * @return true if write successfully
      * @since 05-11-21
      */
-    public abstract boolean writeResults(String filename, int seekCount, int head);
-    public abstract boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek);
+    
     
     public abstract void Run();
 
