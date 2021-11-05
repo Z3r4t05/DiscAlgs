@@ -16,7 +16,12 @@ import java.util.StringTokenizer;
 public class util {
 
     public static final Scanner sc = new Scanner(System.in);
-
+    /**
+     * get a char match the regular expression
+     * @param msg
+     * @param regex
+     * @return 
+     */
     public static char getChar(String msg, String regex) {
         char c;
         System.out.print(msg);
@@ -47,7 +52,11 @@ public class util {
 
     
     }
-
+    /**
+     * normalize string
+     * @param S
+     * @return 
+     */
     // Normalize string: "  i love   you" -> "i love you"
     public static String normalize(String S) {
         StringTokenizer stk = new StringTokenizer(S, " ");
@@ -57,7 +66,11 @@ public class util {
         }
         return result;
     }
-
+    /**
+     * input non blank string
+     * @param msg
+     * @return string
+     */
     public static String getNonBlankStr(String msg) {
         // get a non blank string
         String result;
@@ -68,10 +81,12 @@ public class util {
         return result;
     }
 
-    /*
-    regular expression: [pP][\\d]{3} for p000, P001, P909,...
-    -[pP]: one char and it must be either p or P
-    -[\\d]{3} means 3 digits
+ 
+    /**
+     * validate string which matches the regular expression
+     * @param msg
+     * @param regEx
+     * @return string
      */
     public static String getPatternStt(String msg, String regEx) {
         String result;
@@ -121,9 +136,13 @@ public class util {
             return getintMinMax(msg, min, max);
         }
     }
-    
+    /**
+     * The expression will append a comma after all digits that are followed by at least one group of 3 digits.
+     * @param i
+     * @return string formatted
+     */
     public static String thousandSeparator(int i) {
-        //The expression will append a comma after all digits that are followed by at least one group of 3 digits.
+        
         String formatted = Integer.toString(i).replaceAll("(\\d)(?=(\\d{3})+$)", "$1,");
         return (formatted);
     }
