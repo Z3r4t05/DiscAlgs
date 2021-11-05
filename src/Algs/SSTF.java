@@ -148,7 +148,7 @@ public class SSTF extends Algs {
         System.out.println(seek);
         c = Inputter.util.getChar("Do you want save the results ? (y/n): ", "[YyNn]");
         if (c == 'Y' || c == 'y') {
-            writeResults("src\\FCFS.txt", seekCount, this.getHeadPos(), seek);
+            writeResults("src\\SSTF.txt", seekCount, this.getHeadPos(), seek);
         } else {
             System.out.println("Finished");
         }
