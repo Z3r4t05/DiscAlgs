@@ -5,14 +5,19 @@
  */
 package Algs;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 /**
  *
  * @author ADMIN
  */
-public class Algs {
+public abstract class Algs {
 
     private ArrayList<Integer> requests = new ArrayList<>();
     private int seekRate;
@@ -58,51 +63,42 @@ public class Algs {
         System.out.println("");
     }
 
-    public void loadRequests() {
-
-    }
-
-    public void writeResults() {
-
-    }
-
-    public void FCFS() {
-        int head = Inputter.util.getintMinMax("Enter current position of the head: ", minCyl, maxCyl);
-        int seekCount = 0;
-        int distance, curTrack;
-        char c = Inputter.util.getChar("Do you want to see the calculation (y/n)? ", "[YyNn]");
-        if (c == 'Y' || c == 'y') {
-            for (int i = 0; i < this.requests.size(); i++) {
-                System.out.print("(");
-                curTrack = requests.get(i);
-                if (curTrack > head) {
-                    System.out.print(curTrack + " - " + head);
-                } else {
-                    System.out.print(head + " - " + curTrack);
-                }
-                distance = Math.abs(curTrack - head); //calculate distance
-                seekCount += distance; //increase total count
-                head = curTrack; //newPos  
-                System.out.print(")");
-                if (i < this.requests.size() - 1) {
-                    System.out.print(" + ");
-                }
-                if ((i != 0) && (((i + 1) % 6) == 0)) {
-                    System.out.println("");
-                }
-            }
-            System.out.println(" = " + seekCount);
-        } else {
-            for (int i = 0; i < this.requests.size() - 1; i++) {
-                curTrack = this.requests.get(i);
-                distance = Math.abs(curTrack - headPos); //calculate distance
-                seekCount += distance; //increase total count
-                headPos = curTrack; //newPos     
-            }
+    /**
+     * Read requests sequence from text file
+     *
+     * @param filename
+     * @return true if file read successfully
+     * @since 05-11-2021
+     */
+    public boolean loadRequests(String filename) {
+        File f = new File(filename);
+        if (!f.exists()) {
+            return false;
         }
-        System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
-        System.out.println("Total seek time = " + Inputter.util.thousandSeparator(seekCount * seekRate));
+        try {
+            try (FileReader fr = new FileReader(f); BufferedReader bf = new BufferedReader(fr)) {
+                bf.readLine(); //consume the first line
+                int count = 0;
+                String line; //line to be read
+                while ((line = bf.readLine()) != null) {
+                    line = line.trim();
+                    if (line.length() > 0) {
+                        StringTokenizer stk = new StringTokenizer(line, " ");
+                        while (stk.hasMoreTokens()) {
+                            this.requests.add(Integer.parseInt(stk.nextToken().trim()));
+                        }
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
     }
+
+    public abstract void writeResults();
+
+    public abstract void Run();
 
     public int getMinCyl() {
         return minCyl;
@@ -146,8 +142,5 @@ public class Algs {
     }
 
     public static void main(String[] args) {
-        Algs n = new Algs(0, 200, 55);
-        n.randomRequests();
-        n.FCFS();
     }
 }
