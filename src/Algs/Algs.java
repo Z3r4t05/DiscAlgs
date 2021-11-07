@@ -49,7 +49,7 @@ public abstract class Algs {
         this.setTotalCylinders(Inputter.util.getintGreater("Enter total cylinders (min 1): ", 1));
         System.out.println("Generating " + totalReq + " request(s) with value from " + this.minCyl + " to " + this.maxCyl);
         try {
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }

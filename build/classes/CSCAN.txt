@@ -1,0 +1,11 @@
+C-SCAN(Circular Elevator) ALGORITHM
+Requests sequence: 
+176 79 34 60 92 11 41 114 
+Head position: 50
+Seek rate: 2
+Direction: Right(Moving from left to right)
+
+Total head movement = 389
+Total seek time = 389*2 = 778ms
+Seek sequence: 
+[60, 79, 92, 114, 176, 199, 0, 11, 34, 41]

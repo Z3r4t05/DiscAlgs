@@ -160,7 +160,7 @@ public class SSTF extends Algs {
     public static void main(String[] args) {
         Algs n = new SSTF();
 
-        n.inputRequests();
+        n.randomRequests();
         n.Run();
     }
 }

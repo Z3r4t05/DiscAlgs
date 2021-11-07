@@ -1,9 +1,10 @@
 SSTF ALGORITHM
 Requests sequence: 
-176 79 34 60 92 11 41 114 
+153 20 89 78 77 169 150 36 
 Head position: 50
+Seek rate: 2
 
-Total head movement = 204
-Total seek time = 204*0 = 0ms
+Total head movement = 179
+Total seek time = 179*2 = 358ms
 Seek sequence: 
-[50, 41, 34, 11, 60, 79, 92, 114, 176]
+[50, 36, 20, 77, 78, 89, 150, 153, 169]

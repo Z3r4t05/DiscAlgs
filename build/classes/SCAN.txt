@@ -1,0 +1,11 @@
+SCAN(Elevator) ALGORITHM
+Requests sequence: 
+15 136 144 137 80 70 156 69 
+Head position: 50
+Seek rate: 2
+Direction: Right(Moving from left to right)
+
+Total head movement = 333
+Total seek time = 333*2 = 666ms
+Seek sequence: 
+[69, 70, 80, 136, 137, 144, 156, 199, 15]
