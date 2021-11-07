@@ -59,7 +59,7 @@
 - Calculating seek time with each algorithm.
 - Supporting 3 type of requests input:
   1. From keyboard
-  2. From *requests.txt* in the following form:
+  2. From *requests.txt*. For example:
       ```
       Requests sequence:
       176 79 34 60 92 11 41 114
