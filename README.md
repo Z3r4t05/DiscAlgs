@@ -64,7 +64,7 @@
       Requests sequence:
       176 79 34 60 92 11 41 114
       Total cylinders:
-      200<br />
+      200
       ```
   3. Generate a random requests sequence.    
 - Save the results in the text file corresponding to each algorithm.
