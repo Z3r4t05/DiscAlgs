@@ -71,7 +71,7 @@ public class SSTF extends Algs {
         return index;
     }
 
-    public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek) {
+    public boolean writeResults(String filename, int seekCount, int head, ArrayList<Integer> seek, int seekRate) {
         try {
             try (FileWriter fw = new FileWriter(filename); PrintWriter pw = new PrintWriter(fw)) {
                 Iterator it = this.getRequests().iterator();
@@ -81,6 +81,7 @@ public class SSTF extends Algs {
                     pw.print(it.next() + " ");
                 }
                 pw.println("\nHead position: " + head);
+                pw.println("Seek rate: " + seekRate);
                 pw.println("\nTotal head movement = " + Inputter.util.thousandSeparator(seekCount));
                 pw.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
                 pw.println("Seek sequence: ");
@@ -103,6 +104,7 @@ public class SSTF extends Algs {
         }
 
         int head = Inputter.util.getintMinMax("Enter current position of the head: ", super.getMinCyl(), super.getMaxCyl());
+        this.setSeekRate(Inputter.util.getintGreater("Enter seek rate: ", 0));
         this.setHeadPos(head);
         int seekCount = 0; //count total head mvment
         ArrayList<node> diff = new ArrayList<>(); //intialize diff arraylist
@@ -149,7 +151,7 @@ public class SSTF extends Algs {
         System.out.println(seek);
         c = Inputter.util.getChar("Do you want save the results ? (y/n): ", "[YyNn]");
         if (c == 'Y' || c == 'y') {
-            writeResults("src\\SSTF.txt", seekCount, this.getHeadPos(), seek);
+            writeResults("src\\SSTF.txt", seekCount, this.getHeadPos(), seek, this.getSeekRate());
         } else {
             System.out.println("Finished");
         }

@@ -1,2 +1,0 @@
-Algs.node
-Algs.SSTF

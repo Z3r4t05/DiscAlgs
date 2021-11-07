@@ -1,0 +1,9 @@
+SSTF ALGORITHM
+Requests sequence: 
+176 79 34 60 92 11 41 114 
+Head position: 50
+
+Total head movement = 204
+Total seek time = 204*0 = 0ms
+Seek sequence: 
+[50, 41, 34, 11, 60, 79, 92, 114, 176]
