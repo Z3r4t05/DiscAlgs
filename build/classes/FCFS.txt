@@ -1,7 +1,8 @@
 FCFS ALGORITHM
 Requests sequence: 
-1 3 4 5 6 7 7 8 9 10 
+171 2 5 8 34 6 8 1 
 Head position: 50
+Seek rate: 2
 
-Total head movement = 58
-Total seek time = 58*2 = 116ms
+Total head movement = 359
+Total seek time = 359*2 = 718ms

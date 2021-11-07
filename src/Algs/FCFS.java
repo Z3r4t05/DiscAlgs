@@ -33,7 +33,8 @@ public class FCFS extends Algs {
             System.err.println("Empty requests!! Please input requests sequence");
             return;
         }
-        int head = Inputter.util.getintMinMax("Enter current position of the head: ", super.getMinCyl(), super.getMaxCyl());
+        int head = Inputter.util.getintMinMax("Enter current position of the head (" + this.getMinCyl() + "-" + this.getMaxCyl() + "): ", super.getMinCyl(), super.getMaxCyl());
+        this.setSeekRate(Inputter.util.getintGreater("Enter seek rate: ", 0));
         this.setHeadPos(head);
         int seekCount = 0;
         int distance, curTrack;
@@ -69,17 +70,17 @@ public class FCFS extends Algs {
         }
         System.out.println("Total head movement = " + Inputter.util.thousandSeparator(seekCount));
         System.out.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
-        c = Inputter.util.getChar("Do you want save the results ? (y/n): ", "[YyNn]");
+        c = Inputter.util.getChar("Do you want save the result ? (y/n): ", "[YyNn]");
         if (c == 'Y' || c == 'y') {
-            writeResults("src\\FCFS.txt", seekCount, this.getHeadPos());
+            writeResults("src\\FCFS.txt", seekCount, this.getHeadPos(), this.getSeekRate());
         } else {
             System.out.println("Finished");
-        }
+        } 
         //To change body of generated methods, choose Tools | Templates.
 
     }
 
-    public boolean writeResults(String filename, int seekCount, int head) {
+    public boolean writeResults(String filename, int seekCount, int head, int seekRate) {
         try {
             try (FileWriter fw = new FileWriter(filename); PrintWriter pw = new PrintWriter(fw)) {
                 Iterator it = this.getRequests().iterator();
@@ -89,6 +90,7 @@ public class FCFS extends Algs {
                     pw.print(it.next() + " ");
                 }
                 pw.println("\nHead position: " + head);
+                pw.println("Seek rate: " + seekRate);
                 pw.println("\nTotal head movement = " + Inputter.util.thousandSeparator(seekCount));
                 pw.println("Total seek time = " + seekCount + "*" + super.getSeekRate() + " = " + Inputter.util.thousandSeparator(seekCount * super.getSeekRate()) + "ms");
             }
@@ -102,8 +104,13 @@ public class FCFS extends Algs {
 
     public static void main(String[] args) {
         Algs n = new FCFS(2, 200, 50);
-        String filename = "src\\requests.txt";
-        n.loadRequests(filename);
+//        String filename = "src\\requests.txt";
+//        if(n.loadRequests(filename)) {
+//            System.out.println(n.getRequests());
+//        } else {
+//            System.out.println("can't find file");
+//        }
+        n.inputRequests();
         n.Run();
     }
 }

@@ -21,7 +21,7 @@ public abstract class Algs {
 
     private ArrayList<Integer> requests = new ArrayList<>();
     private int seekRate;
-    private int minCyl = 0;
+    private final int minCyl = 0;
     private int totalCylinders;
     private int maxCyl;
     private int headPos;
@@ -59,9 +59,9 @@ public abstract class Algs {
             this.requests.add(randInt);
         }
         System.out.println("Generate successfully!");
-        for (Integer t : requests) {
+        requests.forEach((t) -> {
             System.out.print(t + " ");
-        }
+        });
         System.out.println("");
     }
 
@@ -107,14 +107,7 @@ public abstract class Algs {
         }
         return true;
     }
-    /**
-     * Write result to filename
-     * @param filename
-     * @param seekCount
-     * @param head
-     * @return true if write successfully
-     * @since 05-11-21
-     */
+
     
     
     public abstract void Run();
