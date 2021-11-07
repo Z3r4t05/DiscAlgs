@@ -54,7 +54,7 @@
 ## How to use
 1. Clone this repo using [Git Bash](https://git-scm.com/) or [Github Desktop](https://desktop.github.com/), or Download as zip.
 2. Import the project to your JRE or JDK ([NetBeans](https://netbeans.apache.org/) or [Eclipse](https://www.eclipse.org/downloads/) are recommended).
-3. Clean and build, then run the project (Ifyou wanna use command line, then try: <br />
+3. Clean and build, then run the project (If you wanna use command line, then try this after compiling the project: <br />
       `java -jar "(file pathname)\DiskSchedulingAlgs\dist\DiskSchedulingAlgs.jar"`
 ## Features
 - Calculating seek time with each algorithm.
