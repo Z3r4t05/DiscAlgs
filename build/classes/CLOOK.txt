@@ -1,0 +1,11 @@
+C-LOOK(Circular LOOK) ALGORITHM
+Requests sequence: 
+95 180 34 119 11 123 62 64 
+Head position: 50
+Seek rate: 2
+Direction: Left (Moving from right to left)
+
+Total head movement = 326
+Total seek time = 326*2 = 652ms
+Seek sequence: 
+[34, 11, 180, 123, 119, 95, 64, 62]
